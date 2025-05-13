@@ -104,6 +104,11 @@ sudo chmod 644 /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
 sudo launchctl load /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
+### run script:
+```
+sudo /usr/local/bin/start-broadcast.sh
+
+```
 ### debugging:
 ```
 sudo cat /var/log/broadcast.log
