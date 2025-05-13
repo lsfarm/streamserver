@@ -104,3 +104,13 @@ sudo chmod 644 /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
 sudo launchctl load /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
+### debugging:
+```
+sudo cat /var/log/broadcast.log
+sudo cat /var/log/broadcast.err
+```
+```
+ps aux | grep icecast
+ps aux | grep butt
+cat /var/log/broadcast.log
+```
