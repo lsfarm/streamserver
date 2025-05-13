@@ -95,6 +95,7 @@ sudo nano /Library/LaunchDaemons/com.example.buttstarter.plist
 </dict>
 </plist>
 ```
+```
 sudo chown root:wheel /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
 ```
