@@ -48,6 +48,25 @@ sudo launchctl load /Library/LaunchDaemons/com.apache.xampp.startapache.plist
 ```
 ## Broadcast Autolaunch
 ```
+sudo nano /usr/local/bin/start-broadcast.sh
+```
+```
+#!/bin/bash
+
+# Start Icecast
+/usr/local/bin/icecast -c /usr/local/etc/icecast.xml &
+
+# Give Icecast a few seconds to initialize
+sleep 5
+
+# Start butt
+/usr/local/bin/butt -c tsconfig -s
+```
+Adjust paths if needed using which icecast and which butt.
+```
+sudo chmod +x /usr/local/bin/start-broadcast.sh
+```
+```
 sudo nano /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
 ```
@@ -60,10 +79,7 @@ sudo nano /Library/LaunchDaemons/com.example.buttstarter.plist
 
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/butt</string>
-        <string>-c</string>
-        <string>tsconfig</string>
-        <string>-s</string>
+        <string>/usr/local/bin/start-broadcast.sh</string>
     </array>
 
     <key>RunAtLoad</key>
@@ -73,18 +89,15 @@ sudo nano /Library/LaunchDaemons/com.example.buttstarter.plist
     <true/>
 
     <key>StandardOutPath</key>
-    <string>/var/log/butt.log</string>
+    <string>/var/log/broadcast.log</string>
     <key>StandardErrorPath</key>
-    <string>/var/log/butt.err</string>
-
-    <key>KeepAlive</key>
-    <false/>
+    <string>/var/log/broadcast.err</string>
 </dict>
 </plist>
 ```
-Replace /usr/local/bin/butt with the full path from which butt.
-```
 sudo chown root:wheel /Library/LaunchDaemons/com.example.buttstarter.plist
+```
+```
 sudo chmod 644 /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
 ```
