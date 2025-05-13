@@ -1,5 +1,8 @@
 # streamserver
 https://ipv6.rs/tutorial/macOS/Icecast_2/
+```
+icecast -c /usr/local/etc/icecast.xml
+```
 https://www.apachefriends.org/download.html
 /Applications/XAMPP/xamppfiles/htdocs/dashboard
 ```
@@ -42,4 +45,48 @@ sudo chmod 644 /Library/LaunchDaemons/com.apache.xampp.startapache.plist
 ```
 ```
 sudo launchctl load /Library/LaunchDaemons/com.apache.xampp.startapache.plist
+```
+## Broadcast Autolaunch
+```
+sudo nano /Library/LaunchDaemons/com.example.buttstarter.plist
+```
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.example.buttstarter</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/bin/butt</string>
+        <string>-c</string>
+        <string>tsconfig</string>
+        <string>-s</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>NetworkState</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/var/log/butt.log</string>
+    <key>StandardErrorPath</key>
+    <string>/var/log/butt.err</string>
+
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>
+```
+Replace /usr/local/bin/butt with the full path from which butt.
+```
+sudo chown root:wheel /Library/LaunchDaemons/com.example.buttstarter.plist
+sudo chmod 644 /Library/LaunchDaemons/com.example.buttstarter.plist
+```
+```
+sudo launchctl load /Library/LaunchDaemons/com.example.buttstarter.plist
 ```
